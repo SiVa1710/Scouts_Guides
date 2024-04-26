@@ -1,4 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
+void main() {
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
+  runApp(MaterialApp(
+    home: PromiseAndLaw(),
+  ));
+}
 
 class PromiseAndLaw extends StatelessWidget {
   @override
@@ -6,16 +17,34 @@ class PromiseAndLaw extends StatelessWidget {
     final double screenWidth = MediaQuery.of(context).size.width;
     final double screenHeight = MediaQuery.of(context).size.height;
 
+    // Constants for text styles
+    const TextStyle pageTitleStyle = TextStyle(
+      fontWeight: FontWeight.bold,
+      fontSize: 20,
+      fontFamily: 'Sarabun',
+      letterSpacing: 1.5,
+    );
+
+    const TextStyle flagTitleStyle = TextStyle(
+      fontSize: 20,
+      fontWeight: FontWeight.bold,
+      color: Colors.white,
+    );
+
+    const TextStyle flagDescriptionStyle = TextStyle(
+      fontSize: 18.0,
+      fontFamily: 'Lora',
+      fontWeight: FontWeight.w900,
+      letterSpacing: 1.5,
+      color: Color(0xFF0001cf),
+      height: 1.5,
+    );
+
     return Scaffold(
       appBar: AppBar(
         title: Text(
           'PROMISE AND LAW',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 20,
-            fontFamily: 'Sarabun',
-            letterSpacing: 1.5,
-          ),
+          style: pageTitleStyle,
         ),
         centerTitle: true,
         backgroundColor: Color(0xFF0001cf),
@@ -23,29 +52,32 @@ class PromiseAndLaw extends StatelessWidget {
       body: ListView(
         padding: EdgeInsets.all(screenWidth * 0.03),
         children: [
-          buildPromiseItem(
-            promiseName: 'PROMISE',
-            promiseDescription: PromiseText,
+          buildItem(
+            itemName: 'PROMISE',
+            itemDescription: PromiseText,
             screenWidth: screenWidth,
             screenHeight: screenHeight,
+            iconPath: 'assets/icons/sign.png',
           ),
           SizedBox(height: screenHeight * 0.02),
-          buildLawItem(
-            lawName: 'LAW',
-            lawDescription: LawText,
+          buildItem(
+            itemName: 'LAW',
+            itemDescription: LawText,
             screenWidth: screenWidth,
             screenHeight: screenHeight,
+            iconPath: 'assets/icons/law.png',
           ),
         ],
       ),
     );
   }
 
-  Widget buildPromiseItem({
-    String promiseName,
-    String promiseDescription,
+  Widget buildItem({
+    String itemName,
+    String itemDescription,
     double screenWidth,
     double screenHeight,
+    String iconPath,
   }) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -58,14 +90,14 @@ class PromiseAndLaw extends StatelessWidget {
           color: Color(0xFF0001cf),
           child: ListTile(
             leading: Image.asset(
-              'assets/icons/sign.png', // Replace with your image asset path
-              width: 30, // Adjust image size
+              iconPath,
+              width: 30,
               height: 30,
             ),
             title: Text(
-              promiseName,
+              itemName,
               style: TextStyle(
-                fontSize: screenWidth * 0.05,
+                fontSize: 20, // Same as flagTitleStyle
                 fontWeight: FontWeight.bold,
                 color: Colors.white,
               ),
@@ -82,75 +114,11 @@ class PromiseAndLaw extends StatelessWidget {
                 padding: const EdgeInsets.only(left: 24.0),
                 child: RichText(
                   text: TextSpan(
-                    children: promiseDescription.split('#').map((line) {
+                    children: itemDescription.split('#').map((line) {
                       return TextSpan(
                         text: line,
                         style: TextStyle(
-                          fontSize: screenWidth * 0.048,
-                          fontFamily: 'Lora',
-                          fontWeight: FontWeight.w900,
-                          letterSpacing: 1.5,
-                          color: Color(0xFF0001cf),
-                          height: 1.5,
-                        ),
-                      );
-                    }).toList(),
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ],
-    );
-  }
-
-  Widget buildLawItem({
-    String lawName,
-    String lawDescription,
-    double screenWidth,
-    double screenHeight,
-  }) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Card(
-          elevation: 2,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10),
-          ),
-          color: Color(0xFF0001cf),
-          child: ListTile(
-            leading: Image.asset(
-              'assets/icons/law.png', // Replace with your image asset path
-              width: 30, // Adjust image size
-              height: 30,
-            ),
-            title: Text(
-              lawName,
-              style: TextStyle(
-                fontSize: screenWidth * 0.05,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-              ),
-            ),
-          ),
-        ),
-        SizedBox(height: screenHeight * 0.02),
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 24.0),
-                child: RichText(
-                  text: TextSpan(
-                    children: lawDescription.split('#').map((line) {
-                      return TextSpan(
-                        text: line,
-                        style: TextStyle(
-                          fontSize: screenWidth * 0.048,
+                          fontSize: 18.0, // Same as flagDescriptionStyle
                           fontFamily: 'Lora',
                           fontWeight: FontWeight.w900,
                           letterSpacing: 1.5,
@@ -189,8 +157,3 @@ final String LawText = '''
 #9. A Scout/Guide is pure in thought, word and deed.
 ''';
 
-void main() {
-  runApp(MaterialApp(
-    home: PromiseAndLaw(),
-  ));
-}
