@@ -1,21 +1,54 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
+void main() {
+  runApp(MaterialApp(
+    home: Flags(),
+  ));
+}
+
+// Constants for text styles
+const TextStyle flagTitleStyle = TextStyle(
+  fontSize: 20,
+  fontWeight: FontWeight.bold,
+  color: Colors.white,
+);
+
+const TextStyle flagDescriptionStyle = TextStyle(
+  fontSize: 18.0,
+  fontFamily: 'Lora',
+  fontWeight: FontWeight.w900,
+  letterSpacing: 1.5,
+  color: Color(0xFF0001cf),
+  height: 1.5,
+);
+
+// Constants for colors
+const Color primaryColor = Color(0xFF0001cf);
+const Color whiteColor = Colors.white;
 
 class Flags extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    // Ensure portrait mode only
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
+
     return Scaffold(
       appBar: AppBar(
         title: Text(
           'FLAGS',
           style: TextStyle(
-            fontWeight: FontWeight.bold, // Make the title bold
+            fontWeight: FontWeight.bold,
             fontSize: 20,
             fontFamily: 'Sarabun',
-            letterSpacing: 1.5,// Increase the font size
+            letterSpacing: 1.5,
           ),
         ),
         centerTitle: true,
-        backgroundColor: Color(0xFF0001cf),
+        backgroundColor: primaryColor,
       ),
       body: ListView(
         padding: EdgeInsets.all(16.0),
@@ -68,36 +101,35 @@ class FlagItem extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Card(
-          elevation: 2, // Add elevation for shadow effect
+          elevation: 2,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10), // Add rounded corners to the card
+            borderRadius: BorderRadius.circular(10),
           ),
-          color: Color(0xFF0001cf), // Set card color to blue
+          color: primaryColor,
           child: ListTile(
             leading: Icon(
-              Icons.flag, // Add icon
-              color: Colors.white, // Set icon color to white
+              Icons.flag,
+              color: whiteColor,
             ),
             title: Text(
               flagName,
-              style: TextStyle(
-                fontSize: screenWidth * 0.05, // Increase text size
-                fontWeight: FontWeight.bold,
-                color: Colors.white, // Set text color to white
-              ),
+              style: flagTitleStyle,
             ),
           ),
         ),
-        SizedBox(height: 16.0), // Add space between the Card and the image
+        SizedBox(height: 16.0),
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16.0), // Add equal horizontal padding
+          padding: EdgeInsets.symmetric(horizontal: 16.0),
           child: ClipRRect(
-            borderRadius: BorderRadius.circular(10), // Add rounded corners to the image
+            borderRadius: BorderRadius.circular(10),
             child: Image.asset(
               flagImage,
-              width: MediaQuery.of(context).size.width - 32.0, // Adjust image width to fit screen
-              height: MediaQuery.of(context).size.width * 0.6, // Set height based on screen width
-              fit: BoxFit.cover, // Ensure the image covers the available space
+              width: screenWidth - 32.0,
+              height: screenWidth * 0.6,
+              fit: BoxFit.cover,
+              errorBuilder: (context, error, stackTrace) {
+                return Text('Error loading image');
+              },
             ),
           ),
         ),
@@ -106,22 +138,15 @@ class FlagItem extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: 16.0), // Add space below the image
+              SizedBox(height: 16.0),
               Padding(
-                padding: const EdgeInsets.only(left: 24.0), // Adjust left padding to align with image
+                padding: const EdgeInsets.only(left: 24.0),
                 child: RichText(
                   text: TextSpan(
                     children: flagDescription.split('#').map((line) {
                       return TextSpan(
                         text: line,
-                        style: TextStyle(
-                          fontSize: 18.0,
-                          fontFamily: 'Lora',
-                          fontWeight: FontWeight.w900,
-                          letterSpacing: 1.5,// Increase text size
-                          color: Color(0xFF0001cf), // Set text color
-                          height: 1.5, // Set line spacing multiplier (adjust as needed)
-                        ),
+                        style: flagDescriptionStyle,
                       );
                     }).toList(),
                   ),
@@ -134,7 +159,6 @@ class FlagItem extends StatelessWidget {
     );
   }
 }
-
 
 final String NationalFlag = '''
 #• Shape - Rectangular
@@ -188,9 +212,3 @@ final String BSGFlag = '''
 # • Tre foil - Guide Movement
 # • Asoka Chakra - Bharat (India's Movement).
 ''';
-
-void main() {
-  runApp(MaterialApp(
-    home: Flags(),
-  ));
-}
