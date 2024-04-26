@@ -1,4 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
+void main() {
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
+  runApp(MaterialApp(
+    home: LeftHandShake(),
+  ));
+}
 
 class LeftHandShake extends StatelessWidget {
   @override
@@ -9,7 +20,7 @@ class LeftHandShake extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'NOTES',
+          'LEFT HAND SHAKE',
           style: TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 20,
@@ -23,22 +34,24 @@ class LeftHandShake extends StatelessWidget {
       body: ListView(
         padding: EdgeInsets.all(screenWidth * 0.03),
         children: [
-          buildMottoItem(
+          buildHandshakeItem(
             handshakeName: 'LEFT HAND SHAKE',
             handshakeDescription: handshakeText,
             screenWidth: screenWidth,
             screenHeight: screenHeight,
+            imagePath: 'assets/icons/hand.png', // Image asset path
           ),
         ],
       ),
     );
   }
 
-  Widget buildMottoItem({
+  Widget buildHandshakeItem({
     String handshakeName,
     String handshakeDescription,
     double screenWidth,
     double screenHeight,
+    String imagePath, // New parameter for image asset path
   }) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -51,14 +64,14 @@ class LeftHandShake extends StatelessWidget {
           color: Color(0xFF0001cf),
           child: ListTile(
             leading: Image.asset(
-              'assets/icons/hand.png', // Replace with your image asset path
+              imagePath, // Use specified image asset
               width: 30, // Adjust image size
               height: 30,
             ),
             title: Text(
               handshakeName,
               style: TextStyle(
-                fontSize: screenWidth * 0.05,
+                fontSize: 20,
                 fontWeight: FontWeight.bold,
                 color: Colors.white,
               ),
@@ -79,7 +92,7 @@ class LeftHandShake extends StatelessWidget {
                       return TextSpan(
                         text: line,
                         style: TextStyle(
-                          fontSize: screenWidth * 0.048,
+                          fontSize: 18.0,
                           fontFamily: 'Lora',
                           fontWeight: FontWeight.w900,
                           letterSpacing: 1.5,
@@ -104,9 +117,3 @@ final String handshakeText = '''
 #
 #• The handshake is made with the hand nearest the heart and is offered as a token of friendship.
 ''';
-
-void main() {
-  runApp(MaterialApp(
-    home: LeftHandShake(),
-  ));
-}
