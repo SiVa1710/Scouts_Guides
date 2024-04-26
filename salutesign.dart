@@ -1,4 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
+void main() {
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
+  runApp(MaterialApp(
+    home: SaluteAndSign(),
+  ));
+}
 
 class SaluteAndSign extends StatelessWidget {
   @override
@@ -23,29 +34,32 @@ class SaluteAndSign extends StatelessWidget {
       body: ListView(
         padding: EdgeInsets.all(screenWidth * 0.03),
         children: [
-          buildSignItem(
-            signName: 'SIGN',
-            signDescription: SignText,
+          buildItem(
+            itemName: 'SIGN',
+            itemDescription: SignText,
             screenWidth: screenWidth,
             screenHeight: screenHeight,
+            iconPath: 'assets/icons/sign.png',
           ),
           SizedBox(height: screenHeight * 0.02),
-          buildSaluteItem(
-            saluteName: 'SALUTE',
-            saluteDescription: SaluteText,
+          buildItem(
+            itemName: 'SALUTE',
+            itemDescription: SaluteText,
             screenWidth: screenWidth,
             screenHeight: screenHeight,
+            iconPath: 'assets/icons/sign.png',
           ),
         ],
       ),
     );
   }
 
-  Widget buildSignItem({
-    String signName,
-    String signDescription,
+  Widget buildItem({
+    String itemName,
+    String itemDescription,
     double screenWidth,
     double screenHeight,
+    String iconPath,
   }) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -58,14 +72,14 @@ class SaluteAndSign extends StatelessWidget {
           color: Color(0xFF0001cf),
           child: ListTile(
             leading: Image.asset(
-              'assets/icons/sign.png', // Replace with your image asset path
-              width: 30, // Adjust image size
+              iconPath,
+              width: 30,
               height: 30,
             ),
             title: Text(
-              signName,
+              itemName,
               style: TextStyle(
-                fontSize: screenWidth * 0.05,
+                fontSize: 20,
                 fontWeight: FontWeight.bold,
                 color: Colors.white,
               ),
@@ -82,75 +96,11 @@ class SaluteAndSign extends StatelessWidget {
                 padding: const EdgeInsets.only(left: 24.0),
                 child: RichText(
                   text: TextSpan(
-                    children: signDescription.split('#').map((line) {
+                    children: itemDescription.split('#').map((line) {
                       return TextSpan(
                         text: line,
                         style: TextStyle(
-                          fontSize: screenWidth * 0.048,
-                          fontFamily: 'Lora',
-                          fontWeight: FontWeight.w900,
-                          letterSpacing: 1.5,
-                          color: Color(0xFF0001cf),
-                          height: 1.5,
-                        ),
-                      );
-                    }).toList(),
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ],
-    );
-  }
-
-  Widget buildSaluteItem({
-    String saluteName,
-    String saluteDescription,
-    double screenWidth,
-    double screenHeight,
-  }) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Card(
-          elevation: 2,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10),
-          ),
-          color: Color(0xFF0001cf),
-          child: ListTile(
-            leading: Image.asset(
-              'assets/icons/sign.png', // Replace with your image asset path
-              width: 30, // Adjust image size
-              height: 30,
-            ),
-            title: Text(
-              saluteName,
-              style: TextStyle(
-                fontSize: screenWidth * 0.05,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-              ),
-            ),
-          ),
-        ),
-        SizedBox(height: screenHeight * 0.02),
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 24.0),
-                child: RichText(
-                  text: TextSpan(
-                    children: saluteDescription.split('#').map((line) {
-                      return TextSpan(
-                        text: line,
-                        style: TextStyle(
-                          fontSize: screenWidth * 0.048,
+                          fontSize: 18.0,
                           fontFamily: 'Lora',
                           fontWeight: FontWeight.w900,
                           letterSpacing: 1.5,
@@ -189,9 +139,3 @@ final String SaluteText = '''
 #2. Help Others
 #3. Obey the Scout Law
 ''';
-
-void main() {
-  runApp(MaterialApp(
-    home: SaluteAndSign(),
-  ));
-}
