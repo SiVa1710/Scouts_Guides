@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class FirstAid5 extends StatelessWidget {
   @override
@@ -50,7 +51,7 @@ class FirstAid5 extends StatelessWidget {
             title: Text(
               'ELECTRIC SHOCK',
               style: TextStyle(
-                fontSize: screenWidth * 0.05,
+                fontSize: 20, // Adjusted font size
                 fontWeight: FontWeight.bold,
                 color: Colors.white,
               ),
@@ -71,7 +72,7 @@ class FirstAid5 extends StatelessWidget {
                       return TextSpan(
                         text: line,
                         style: TextStyle(
-                          fontSize: screenWidth * 0.048,
+                          fontSize: 18, // Adjusted font size
                           fontFamily: 'Lora',
                           fontWeight: FontWeight.w900,
                           letterSpacing: 1.5,
@@ -134,7 +135,7 @@ class FirstAid5 extends StatelessWidget {
             title: Text(
               name,
               style: TextStyle(
-                fontSize: screenWidth * 0.05,
+                fontSize: 20, // Adjusted font size
                 fontWeight: FontWeight.bold,
                 color: Colors.white,
               ),
@@ -155,7 +156,7 @@ class FirstAid5 extends StatelessWidget {
                       return TextSpan(
                         text: line,
                         style: TextStyle(
-                          fontSize: screenWidth * 0.048,
+                          fontSize: 18, // Adjusted font size
                           fontFamily: 'Lora',
                           fontWeight: FontWeight.w900,
                           letterSpacing: 1.5,
@@ -310,9 +311,15 @@ final String choking = '''
 #
 # • Foods like sunflower seeds, ice cubes, gum, popcorn, grapes, hot dogs, hard candy, nuts, and raw vegetables.
 #
-#By following these precautions and knowing how to respond in an emergency, choking incidents in children can be minimized, ensuring their safety and well-being.''';
+#By following these precautions and knowing how to respond in an emergency, choking incidents in children can be minimized, ensuring their safety and well-being.
+''';
 
 void main() {
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
+
   runApp(MaterialApp(
     home: FirstAid5(),
   ));
