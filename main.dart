@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
 import 'home_screen.dart';
 import 'dart:async';
+import 'package:flutter/services.dart';
 
 void main() {
+  // Ensure portrait mode only
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
+
   runApp(MyApp());
 }
 
