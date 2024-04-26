@@ -1,6 +1,41 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:video_player/video_player.dart';
 import 'package:chewie/chewie.dart';
+
+void main() {
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]).then((_) {
+    runApp(MaterialApp(
+      home: Lashing(),
+    ));
+  });
+}
+
+// Constants for text styles
+const TextStyle appBarTextStyle = TextStyle(
+  fontWeight: FontWeight.bold,
+  fontSize: 20,
+  fontFamily: 'Sarabun',
+  letterSpacing: 1.5,
+);
+
+const TextStyle lashTitleStyle = TextStyle(
+  fontSize: 20,
+  fontWeight: FontWeight.bold,
+  color: Colors.white,
+);
+
+const TextStyle lashDescriptionStyle = TextStyle(
+  fontSize: 18.0,
+  fontFamily: 'Lora',
+  fontWeight: FontWeight.w900,
+  letterSpacing: 1.5,
+  color: Color(0xFF0001cf),
+  height: 1.5,
+);
 
 class Lashing extends StatelessWidget {
   @override
@@ -9,12 +44,7 @@ class Lashing extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           'LASHING',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 20,
-            fontFamily: 'Sarabun',
-            letterSpacing: 1.5,
-          ),
+          style: appBarTextStyle,
         ),
         centerTitle: true,
         backgroundColor: Color(0xFF0001cf),
@@ -55,7 +85,7 @@ class Lashing extends StatelessWidget {
             lashName: 'SHEAR LASHING',
             lashVideo: 'assets/videos/shearlashing.mp4',
             lashDescription: Lash5Description,
-          ),// Add more LashItem widgets for each lash
+          ),
         ],
       ),
     );
@@ -96,11 +126,7 @@ class LashItem extends StatelessWidget {
             ),
             title: Text(
               lashName,
-              style: TextStyle(
-                fontSize: screenWidth * 0.05,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-              ),
+              style: lashTitleStyle,
             ),
           ),
         ),
@@ -132,14 +158,7 @@ class LashItem extends StatelessWidget {
                     children: lashDescription.split('#').map((line) {
                       return TextSpan(
                         text: line,
-                        style: TextStyle(
-                          fontSize: screenWidth * 0.048,
-                          fontFamily: 'Lora',
-                          fontWeight: FontWeight.w900,
-                          letterSpacing: 1.5,
-                          color: Color(0xFF0001cf),
-                          height: 1.5,
-                        ),
+                        style: lashDescriptionStyle,
                       );
                     }).toList(),
                   ),
@@ -258,8 +277,4 @@ final String Lash5Description = '''
 # • Building structures like scaffolding, tripods, or framework in outdoor settings.
 ''';
 
-void main() {
-  runApp(MaterialApp(
-    home: Lashing(),
-  ));
-}
+
