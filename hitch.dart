@@ -1,6 +1,41 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:video_player/video_player.dart';
 import 'package:chewie/chewie.dart';
+
+void main() {
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]).then((_) {
+    runApp(MaterialApp(
+      home: Hitches(),
+    ));
+  });
+}
+
+// Constants for text styles
+const TextStyle appBarTextStyle = TextStyle(
+  fontWeight: FontWeight.bold,
+  fontSize: 20,
+  fontFamily: 'Sarabun',
+  letterSpacing: 1.5,
+);
+
+const TextStyle hitchTitleStyle = TextStyle(
+  fontSize: 20,
+  fontWeight: FontWeight.bold,
+  color: Colors.white,
+);
+
+const TextStyle hitchDescriptionStyle = TextStyle(
+  fontSize: 18.0,
+  fontFamily: 'Lora',
+  fontWeight: FontWeight.w900,
+  letterSpacing: 1.5,
+  color: Color(0xFF0001cf),
+  height: 1.5,
+);
 
 class Hitches extends StatelessWidget {
   @override
@@ -9,12 +44,7 @@ class Hitches extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           'HITCHES',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 20,
-            fontFamily: 'Sarabun',
-            letterSpacing: 1.5,
-          ),
+          style: appBarTextStyle,
         ),
         centerTitle: true,
         backgroundColor: Color(0xFF0001cf),
@@ -62,7 +92,7 @@ class Hitches extends StatelessWidget {
             hitchName: 'DRAW HITCH',
             hitchVideo: 'assets/videos/highwaymans.mp4',
             hitchDescription: Hitch6Description,
-          ), // Add more HitchItem widgets for each hitch
+          ),
         ],
       ),
     );
@@ -103,11 +133,7 @@ class HitchItem extends StatelessWidget {
             ),
             title: Text(
               hitchName,
-              style: TextStyle(
-                fontSize: screenWidth * 0.05,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-              ),
+              style: hitchTitleStyle,
             ),
           ),
         ),
@@ -139,14 +165,7 @@ class HitchItem extends StatelessWidget {
                     children: hitchDescription.split('#').map((line) {
                       return TextSpan(
                         text: line,
-                        style: TextStyle(
-                          fontSize: screenWidth * 0.048,
-                          fontFamily: 'Lora',
-                          fontWeight: FontWeight.w900,
-                          letterSpacing: 1.5,
-                          color: Color(0xFF0001cf),
-                          height: 1.5,
-                        ),
+                        style: hitchDescriptionStyle,
                       );
                     }).toList(),
                   ),
@@ -186,15 +205,14 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
       allowPlaybackSpeedChanging: true,
       allowFullScreen: false,
       aspectRatio: 16 / 9,
-      // other options...
     );
   }
 
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 5, // Adjust the elevation as needed
-      shadowColor: Colors.black, // Set the shadow color to black
+      elevation: 5,
+      shadowColor: Colors.black,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10.0),
       ),
@@ -215,9 +233,10 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
   }
 }
 
+// Hitch descriptions
 final String Hitch1Description = '''
 #Uses: 
-#
+
 # • Securing a rope to a post, pole, or other object.
 #
 #Practical Use: 
@@ -227,7 +246,7 @@ final String Hitch1Description = '''
 
 final String Hitch2Description = '''
 #Uses: 
-#
+
 # • Creating a secure and reliable knot for tying a rope to an object.
 #
 #Practical Use: 
@@ -237,7 +256,7 @@ final String Hitch2Description = '''
 
 final String Hitch3Description = '''
 #Uses: 
-#
+
 # • Attaching a rope to a cylindrical object, particularly when the object is being dragged or lifted.
 #
 #Practical Use: 
@@ -247,7 +266,7 @@ final String Hitch3Description = '''
 
 final String Hitch4Description = '''
 #Uses: 
-#
+
 # • Attaching a rope to a cylindrical object, allowing it to move freely along the object's length.
 #
 #Practical Use: 
@@ -257,7 +276,7 @@ final String Hitch4Description = '''
 
 final String Hitch5Description = '''
 #Uses: 
-#
+
 # • Assisting in splicing and unlaying rope, and untying knots.
 #
 #Practical Use: 
@@ -267,16 +286,10 @@ final String Hitch5Description = '''
 
 final String Hitch6Description = '''
 #Uses: 
-#
+
 # •  Securing a rope to a post or stake with adjustable tension.
 #
 #Practical Use: 
 #
 # • Camping, securing tent guy lines, or creating temporary tie-down points for tarps and shelters.
 ''';
-
-void main() {
-  runApp(MaterialApp(
-    home: Hitches(),
-  ));
-}
