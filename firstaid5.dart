@@ -1,8 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
+void main() {
+  runApp(MaterialApp(
+    home: FirstAid4(),
+  ));
+}
 
 class FirstAid4 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
+
     final double screenWidth = MediaQuery.of(context).size.width;
     final double screenHeight = MediaQuery.of(context).size.height;
 
@@ -50,7 +62,7 @@ class FirstAid4 extends StatelessWidget {
             title: Text(
               'FRACTURE',
               style: TextStyle(
-                fontSize: screenWidth * 0.05,
+                fontSize: 20, // Adjusted font size to match Flags page
                 fontWeight: FontWeight.bold,
                 color: Colors.white,
               ),
@@ -71,7 +83,7 @@ class FirstAid4 extends StatelessWidget {
                       return TextSpan(
                         text: line,
                         style: TextStyle(
-                          fontSize: screenWidth * 0.048,
+                          fontSize: 18, // Adjusted font size to match Flags page
                           fontFamily: 'Lora',
                           fontWeight: FontWeight.w900,
                           letterSpacing: 1.5,
@@ -141,7 +153,7 @@ class FirstAid4 extends StatelessWidget {
             title: Text(
               name,
               style: TextStyle(
-                fontSize: screenWidth * 0.05,
+                fontSize: 20, // Adjusted font size to match Flags page
                 fontWeight: FontWeight.bold,
                 color: Colors.white,
               ),
@@ -162,7 +174,7 @@ class FirstAid4 extends StatelessWidget {
                       return TextSpan(
                         text: line,
                         style: TextStyle(
-                          fontSize: screenWidth * 0.048,
+                          fontSize: 18, // Adjusted font size to match Flags page
                           fontFamily: 'Lora',
                           fontWeight: FontWeight.w900,
                           letterSpacing: 1.5,
@@ -242,6 +254,7 @@ final String Fractures = '''
 # • Splints can be improvised from various materials if necessary.
 #
 #Fractures involving the back (vertebral column) require special care, and the victim should not be allowed to move. Seek emergency medical help immediately.
+#
 ''';
 
 final String arm = '''
@@ -353,9 +366,3 @@ final String mouth = '''
 #
 #Remember, maintaining a clear airway and providing effective rescue breaths are crucial during mouth-to-mouth resuscitation. Always prioritize the well-being of the individual and seek additional medical assistance as soon as possible.
 ''';
-
-void main() {
-  runApp(MaterialApp(
-    home: FirstAid4(),
-  ));
-}
