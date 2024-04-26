@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:scouts_and_guides/compass.dart';
 import 'package:scouts_and_guides/lefthandshake.dart';
 import 'package:scouts_and_guides/promiselaw.dart';
 import 'package:scouts_and_guides/salutesign.dart';
 import 'package:scouts_and_guides/signals.dart';
-import 'motto.dart';
+import 'package:scouts_and_guides/motto.dart';
 
 class Notes extends StatelessWidget {
   final List<String> itemNames = [
     "PROMISE & LAW",
     "SIGN & SALUTE",
     "MOTTO",
-    "LEFT HAND SHAKE",
+    "LEFTHAND SHAKE",
     "COMPASS",
     "SIGNALS"
   ];
@@ -27,28 +28,34 @@ class Notes extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Ensure portrait mode only
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
+
     return Scaffold(
       appBar: AppBar(
         title: Text(
           'NOTES',
           style: TextStyle(
-            fontWeight: FontWeight.bold, // Make the title bold
+            fontWeight: FontWeight.bold,
             fontSize: 20,
             fontFamily: 'Sarabun',
-            letterSpacing: 1.5,// Increase the font size
+            letterSpacing: 1.5,
           ),
         ),
         centerTitle: true,
         backgroundColor: Color(0xFF0001cf),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(17.0),// Add padding around the grid
+        padding: const EdgeInsets.all(17.0),
         child: GridView.builder(
           itemCount: 6,
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: MediaQuery.of(context).size.width > 600 ? 4 : 2,
-            crossAxisSpacing: 12.0, // Adjust the spacing between columns
-            mainAxisSpacing: 12.0, // Adjust the spacing between rows
+            crossAxisSpacing: 12.0,
+            mainAxisSpacing: 12.0,
           ),
           itemBuilder: (context, index) {
             return ItemCard(
@@ -93,7 +100,6 @@ class Notes extends StatelessWidget {
                       MaterialPageRoute(builder: (context) => Signals()),
                     );
                     break;
-                // Add more cases for additional screens
                   default:
                     Navigator.push(
                       context,
@@ -126,28 +132,28 @@ class ItemCard extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12.0),
           side: BorderSide(
-            color: Color(0xFF0001cf), // Border color
-            width: 3.0, // Border width
+            color: Color(0xFF0001cf),
+            width: 3.0,
           ),
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset(
-              image, // Replace with your image assets
-              width: MediaQuery.of(context).size.width * 0.15, // Adjust image width based on screen size
-              height: MediaQuery.of(context).size.width * 0.15, // Adjust image height based on screen size
+              image,
+              width: MediaQuery.of(context).size.width * 0.15,
+              height: MediaQuery.of(context).size.width * 0.15,
               fit: BoxFit.cover,
             ),
             SizedBox(height: 10),
             Text(
-              name, // Replace with category name
+              name,
               style: TextStyle(
-                fontSize: MediaQuery.of(context).size.width * 0.04, // Increased font size
+                fontSize: 18, // Adjusted font size to match the style
                 fontWeight: FontWeight.w900,
                 color: Colors.white,
                 fontFamily: 'Sarabun',
-                letterSpacing: 1.3,// Adjust text size based on screen size
+                letterSpacing: 1.3,
               ),
             ),
           ],
