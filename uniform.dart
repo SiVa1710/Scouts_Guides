@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class Uniform extends StatelessWidget {
   @override
-
   Widget build(BuildContext context) {
+    // Ensure portrait mode only
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
+
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -71,7 +77,7 @@ class UniformItem extends StatelessWidget {
             title: Text(
               uniformName,
               style: TextStyle(
-                fontSize: screenWidth * 0.05,
+                fontSize: 20, // Maintain font size consistency
                 fontWeight: FontWeight.bold,
                 color: Colors.white,
               ),
@@ -105,7 +111,7 @@ class UniformItem extends StatelessWidget {
                       return TextSpan(
                         text: line,
                         style: TextStyle(
-                          fontSize: screenWidth * 0.048,
+                          fontSize: 18, // Maintain font size consistency
                           fontFamily: 'Lora',
                           fontWeight: FontWeight.w900,
                           letterSpacing: 1.5,
@@ -253,6 +259,7 @@ final String Guide = '''
 #Uniform for Sea Guide: A Sea Guide shall wear the uniform as for a Guide. She shall also wear the Sea Guide Badge above the right pocket.
 #
 #Uniform for Air Guide: An Air Guide shall wear the uniform as for a Guide. She shall also wear the Air Guide Badge above the right pocket.
+#
 ''';
 
 void main() {
