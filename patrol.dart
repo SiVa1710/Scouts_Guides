@@ -1,8 +1,37 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
+// Constants for text styles
+const TextStyle flagTitleStyle = TextStyle(
+  fontSize: 20,
+  fontWeight: FontWeight.bold,
+  color: Colors.white,
+);
+
+const TextStyle flagDescriptionStyle = TextStyle(
+  fontSize: 18.0,
+  fontFamily: 'Lora',
+  fontWeight: FontWeight.w900,
+  letterSpacing: 1.5,
+  color: Color(0xFF0001cf),
+  height: 1.5,
+);
+
+void main() {
+  runApp(MaterialApp(
+    home: Patrol(),
+  ));
+}
 
 class Patrol extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    // Ensure portrait mode only
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
+
     final double screenWidth = MediaQuery.of(context).size.width;
     final double screenHeight = MediaQuery.of(context).size.height;
 
@@ -49,11 +78,7 @@ class Patrol extends StatelessWidget {
             ),
             title: Text(
               'THE PATROL SYSTEM',
-              style: TextStyle(
-                fontSize: screenWidth * 0.05,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-              ),
+              style: flagTitleStyle,
             ),
           ),
         ),
@@ -70,14 +95,7 @@ class Patrol extends StatelessWidget {
                     children: patrolsystem.split('#').map((line) {
                       return TextSpan(
                         text: line,
-                        style: TextStyle(
-                          fontSize: screenWidth * 0.048,
-                          fontFamily: 'Lora',
-                          fontWeight: FontWeight.w900,
-                          letterSpacing: 1.5,
-                          color: Color(0xFF0001cf),
-                          height: 1.5,
-                        ),
+                        style: flagDescriptionStyle,
                       );
                     }).toList(),
                   ),
@@ -217,7 +235,7 @@ class Patrol extends StatelessWidget {
           description: Council,
           screenWidth: screenWidth,
           screenHeight: screenHeight,
-        ),
+        ),// Add other cards here with similar structure
       ],
     );
   }
@@ -245,11 +263,7 @@ class Patrol extends StatelessWidget {
             ),
             title: Text(
               name,
-              style: TextStyle(
-                fontSize: screenWidth * 0.05,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-              ),
+              style: flagTitleStyle,
             ),
           ),
         ),
@@ -266,14 +280,7 @@ class Patrol extends StatelessWidget {
                     children: description.split('#').map((line) {
                       return TextSpan(
                         text: line,
-                        style: TextStyle(
-                          fontSize: screenWidth * 0.048,
-                          fontFamily: 'Lora',
-                          fontWeight: FontWeight.w900,
-                          letterSpacing: 1.5,
-                          color: Color(0xFF0001cf),
-                          height: 1.5,
-                        ),
+                        style: flagDescriptionStyle,
                       );
                     }).toList(),
                   ),
@@ -508,8 +515,3 @@ final String Council = '''
 #• The Patrol-in-Council convenes when the Patrol gathers to discuss and make decisions on various matters such as upcoming activities, membership dues, camping preferences, and more. Led by the Patrol Leader, all Patrol members participate in these discussions, addressing the affairs and needs of the Patrol collectively.
 ''';
 
-void main() {
-  runApp(MaterialApp(
-    home: Patrol(),
-  ));
-}
