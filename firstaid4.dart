@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class FirstAid3 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    // Ensure portrait mode only
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
+
     final double screenWidth = MediaQuery.of(context).size.width;
     final double screenHeight = MediaQuery.of(context).size.height;
 
@@ -50,7 +57,7 @@ class FirstAid3 extends StatelessWidget {
             title: Text(
               'BANDAGES',
               style: TextStyle(
-                fontSize: screenWidth * 0.05,
+                fontSize: 20, // Maintain font size consistency
                 fontWeight: FontWeight.bold,
                 color: Colors.white,
               ),
@@ -71,7 +78,7 @@ class FirstAid3 extends StatelessWidget {
                       return TextSpan(
                         text: line,
                         style: TextStyle(
-                          fontSize: screenWidth * 0.048,
+                          fontSize: 18, // Maintain font size consistency
                           fontFamily: 'Lora',
                           fontWeight: FontWeight.w900,
                           letterSpacing: 1.5,
@@ -183,7 +190,7 @@ class FirstAid3 extends StatelessWidget {
             title: Text(
               name,
               style: TextStyle(
-                fontSize: screenWidth * 0.05,
+                fontSize: 20, // Maintain font size consistency
                 fontWeight: FontWeight.bold,
                 color: Colors.white,
               ),
@@ -204,7 +211,7 @@ class FirstAid3 extends StatelessWidget {
                       return TextSpan(
                         text: line,
                         style: TextStyle(
-                          fontSize: screenWidth * 0.048,
+                          fontSize: 18, // Maintain font size consistency
                           fontFamily: 'Lora',
                           fontWeight: FontWeight.w900,
                           letterSpacing: 1.5,
