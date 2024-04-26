@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class Signals extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    // Ensure portrait mode only
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
+
     final double screenWidth = MediaQuery.of(context).size.width;
     final double screenHeight = MediaQuery.of(context).size.height;
 
@@ -12,7 +19,7 @@ class Signals extends StatelessWidget {
           'SIGNALS',
           style: TextStyle(
             fontWeight: FontWeight.bold,
-            fontSize: 20,
+            fontSize: 20, // Match the font size of the title in Flags page
             fontFamily: 'Sarabun',
             letterSpacing: 1.5,
           ),
@@ -23,16 +30,16 @@ class Signals extends StatelessWidget {
       body: ListView(
         padding: EdgeInsets.all(screenWidth * 0.03),
         children: [
-          buildHandSignalItem(
-            handSignalName: 'HAND SIGNALS',
-            handSignalDescription: HandSignalText,
+          buildSignalItem(
+            signalName: 'HAND SIGNALS',
+            signalDescription: HandSignalText,
             screenWidth: screenWidth,
             screenHeight: screenHeight,
           ),
           SizedBox(height: screenHeight * 0.02),
-          buildWhistleSignalItem(
-            whistleSignalName: 'WHISTLE SIGNALS',
-            whistleSignalDescription: WhistleSignalText,
+          buildSignalItem(
+            signalName: 'WHISTLE SIGNALS',
+            signalDescription: WhistleSignalText,
             screenWidth: screenWidth,
             screenHeight: screenHeight,
           ),
@@ -41,9 +48,9 @@ class Signals extends StatelessWidget {
     );
   }
 
-  Widget buildHandSignalItem({
-    String handSignalName,
-    String handSignalDescription,
+  Widget buildSignalItem({
+    String signalName,
+    String signalDescription,
     double screenWidth,
     double screenHeight,
   }) {
@@ -63,9 +70,9 @@ class Signals extends StatelessWidget {
               size: 30,
             ),
             title: Text(
-              handSignalName,
+              signalName,
               style: TextStyle(
-                fontSize: screenWidth * 0.05,
+                fontSize: 20, // Match the font size of the title in Flags page
                 fontWeight: FontWeight.bold,
                 color: Colors.white,
               ),
@@ -82,75 +89,11 @@ class Signals extends StatelessWidget {
                 padding: const EdgeInsets.only(left: 24.0),
                 child: RichText(
                   text: TextSpan(
-                    children: handSignalDescription.split('#').map((line) {
+                    children: signalDescription.split('#').map((line) {
                       return TextSpan(
                         text: line,
                         style: TextStyle(
-                          fontSize: screenWidth * 0.048,
-                          fontFamily: 'Lora',
-                          fontWeight: FontWeight.w900,
-                          letterSpacing: 1.5,
-                          color: Color(0xFF0001cf),
-                          height: 1.5,
-                        ),
-                      );
-                    }).toList(),
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ],
-    );
-  }
-
-  Widget buildWhistleSignalItem({
-    String whistleSignalName,
-    String whistleSignalDescription,
-    double screenWidth,
-    double screenHeight,
-  }) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Card(
-          elevation: 2,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10),
-          ),
-          color: Color(0xFF0001cf),
-          child: ListTile(
-            leading: Icon(
-              Icons.signal_wifi_4_bar_rounded, // Change the icon to the desired one
-              color: Colors.white,
-              size: 30,
-            ),
-            title: Text(
-              whistleSignalName,
-              style: TextStyle(
-                fontSize: screenWidth * 0.05,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-              ),
-            ),
-          ),
-        ),
-        SizedBox(height: screenHeight * 0.02),
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 24.0),
-                child: RichText(
-                  text: TextSpan(
-                    children: whistleSignalDescription.split('#').map((line) {
-                      return TextSpan(
-                        text: line,
-                        style: TextStyle(
-                          fontSize: screenWidth * 0.048,
+                          fontSize: 18.0, // Match the font size of the description in Flags page
                           fontFamily: 'Lora',
                           fontWeight: FontWeight.w900,
                           letterSpacing: 1.5,
