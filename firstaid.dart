@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:scouts_and_guides/firstaid1.dart';
 import 'package:scouts_and_guides/firstaid2.dart';
 import 'package:scouts_and_guides/firstaid3.dart';
@@ -35,14 +36,14 @@ class FirstAid extends StatelessWidget {
             fontWeight: FontWeight.bold, // Make the title bold
             fontSize: 20,
             fontFamily: 'Sarabun',
-            letterSpacing: 1.5,// Increase the font size
+            letterSpacing: 1.5, // Increase the font size
           ),
         ),
         centerTitle: true,
         backgroundColor: Color(0xFF0001cf),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(17.0),// Add padding around the grid
+        padding: const EdgeInsets.all(17.0), // Add padding around the grid
         child: GridView.builder(
           itemCount: 6,
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -147,7 +148,7 @@ class ItemCard extends StatelessWidget {
                 fontWeight: FontWeight.w900,
                 color: Colors.white,
                 fontFamily: 'Sarabun',
-                letterSpacing: 1.3,// Adjust text size based on screen size
+                letterSpacing: 1.3, // Adjust text size based on screen size
               ),
             ),
           ],
@@ -155,4 +156,15 @@ class ItemCard extends StatelessWidget {
       ),
     );
   }
+}
+
+void main() {
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
+
+  runApp(MaterialApp(
+    home: FirstAid(),
+  ));
 }
