@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class Compass extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final double screenWidth = MediaQuery.of(context).size.width;
     final double screenHeight = MediaQuery.of(context).size.height;
+
+    // Ensure portrait mode only
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
 
     return Scaffold(
       appBar: AppBar(
@@ -60,7 +67,7 @@ class Compass extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Card(
-          elevation: 4,
+          elevation: 2,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),
           ),
@@ -74,7 +81,7 @@ class Compass extends StatelessWidget {
             title: Text(
               compassName,
               style: TextStyle(
-                fontSize: screenWidth * 0.05,
+                fontSize: 20, // Exactly same as Flags page
                 fontWeight: FontWeight.bold,
                 color: Colors.white,
               ),
@@ -88,12 +95,12 @@ class Compass extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               ClipRRect(
-                borderRadius: BorderRadius.circular(10), // Add rounded corners to the image
+                borderRadius: BorderRadius.circular(10),
                 child: Image.asset(
                   "assets/images/compass.png",
-                  width: screenWidth - 32.0, // Adjust image width to fit screen
-                  height: screenWidth * 0.90, // Set height based on screen width
-                  fit: BoxFit.cover, // Ensure the image covers the available space
+                  width: screenWidth - 32.0,
+                  height: screenWidth * 0.90,
+                  fit: BoxFit.cover,
                 ),
               ),
               SizedBox(height: screenHeight * 0.03),
@@ -105,8 +112,8 @@ class Compass extends StatelessWidget {
                       return TextSpan(
                         text: line,
                         style: TextStyle(
-                          fontSize: screenWidth * 0.048,
-                          fontFamily: 'Lora', // Set font to Lora
+                          fontSize: 18.0, // Exactly same as Flags page
+                          fontFamily: 'Lora',
                           fontWeight: FontWeight.w900,
                           letterSpacing: 1.5,
                           color: Color(0xFF0001cf),
@@ -126,9 +133,9 @@ class Compass extends StatelessWidget {
 
   Widget buildCompassTable() {
     return Table(
-      border: TableBorder.all(color: Color(0xFF0001cf), width: 2.7), // Set border color and thickness
+      border: TableBorder.all(color: Color(0xFF0001cf), width: 2.7),
       children: [
-        _buildTableRow(['No', 'Point', 'Abbre.', 'Heading'], isHeader: true), // Header row
+        _buildTableRow(['No', 'Point', 'Abbre.', 'Heading'], isHeader: true),
         _buildTableRow(['1', 'North', 'N', '0.00°/360.00°']),
         _buildTableRow(['2', 'North North East', 'NNE', '22.50°']),
         _buildTableRow(['3', 'North East', 'NE', '45.00°']),
@@ -151,7 +158,9 @@ class Compass extends StatelessWidget {
 
   TableRow _buildTableRow(List<String> data, {bool isHeader = false}) {
     return TableRow(
-      decoration: BoxDecoration(color: isHeader ? Color(0xFF0001cf) : Colors.transparent), // Set header row color
+      decoration: BoxDecoration(
+        color: isHeader ? Color(0xFF0001cf) : Colors.transparent,
+      ),
       children: data
           .map(
             (item) => TableCell(
@@ -161,10 +170,10 @@ class Compass extends StatelessWidget {
               item,
               textAlign: TextAlign.center,
               style: TextStyle(
-                fontSize: 17.0, // Increase font size
-                fontFamily: 'Lora', // Set font to Lora
-                fontWeight: isHeader ? FontWeight.w900 : FontWeight.w900, // Set font weight for header row
-                color: isHeader ? Colors.white : Color(0xFF0001cf), // Set font color for header row
+                fontSize: 17.0,
+                fontFamily: 'Lora',
+                fontWeight: isHeader ? FontWeight.w900 : FontWeight.w900,
+                color: isHeader ? Colors.white : Color(0xFF0001cf),
               ),
             ),
           ),
@@ -196,8 +205,8 @@ class Compass extends StatelessWidget {
                       return TextSpan(
                         text: line,
                         style: TextStyle(
-                          fontSize: screenWidth * 0.048,
-                          fontFamily: 'Lora', // Set font to Lora
+                          fontSize: 18.0, // Exactly same as Flags page
+                          fontFamily: 'Lora',
                           fontWeight: FontWeight.w900,
                           letterSpacing: 1.5,
                           color: Color(0xFF0001cf),
@@ -225,7 +234,7 @@ class Compass extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Card(
-          elevation: 4,
+          elevation: 2,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),
           ),
@@ -239,7 +248,7 @@ class Compass extends StatelessWidget {
             title: Text(
               compassName,
               style: TextStyle(
-                fontSize: screenWidth * 0.05,
+                fontSize: 20, // Exactly same as Flags page
                 fontWeight: FontWeight.bold,
                 color: Colors.white,
               ),
@@ -260,8 +269,8 @@ class Compass extends StatelessWidget {
                       return TextSpan(
                         text: line,
                         style: TextStyle(
-                          fontSize: screenWidth * 0.048,
-                          fontFamily: 'Lora', // Set font to Lora
+                          fontSize: 18.0, // Exactly same as Flags page
+                          fontFamily: 'Lora',
                           fontWeight: FontWeight.w900,
                           letterSpacing: 1.5,
                           color: Color(0xFF0001cf),
