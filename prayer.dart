@@ -1,8 +1,36 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
+class Constants {
+  // Text styles
+  static const TextStyle titleStyle = TextStyle(
+    fontSize: 20,
+    fontWeight: FontWeight.bold,
+    color: Colors.white,
+  );
+
+  static const TextStyle descriptionStyle = TextStyle(
+    fontSize: 18.0,
+    fontFamily: 'Lora',
+    fontWeight: FontWeight.w900,
+    letterSpacing: 1.5,
+    color: Color(0xFF0001cf),
+    height: 1.5,
+  );
+
+  // Colors
+  static const Color primaryColor = Color(0xFF0001cf);
+}
 
 class Prayer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    // Ensure portrait mode only
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
+
     final double screenWidth = MediaQuery.of(context).size.width;
     final double screenHeight = MediaQuery.of(context).size.height;
 
@@ -18,13 +46,13 @@ class Prayer extends StatelessWidget {
           ),
         ),
         centerTitle: true,
-        backgroundColor: Color(0xFF0001cf),
+        backgroundColor: Constants.primaryColor,
       ),
       body: ListView(
         padding: EdgeInsets.all(screenWidth * 0.03),
         children: [
           buildPrayerItem(
-            Composer: 'VEER DEV VEER',
+            composer: 'VEER DEV VEER',
             prayerDescription: PrayerSong,
             screenWidth: screenWidth,
             screenHeight: screenHeight,
@@ -40,7 +68,7 @@ class Prayer extends StatelessWidget {
   }
 
   Widget buildPrayerItem({
-    String Composer,
+    String composer,
     String prayerDescription,
     double screenWidth,
     double screenHeight,
@@ -53,7 +81,7 @@ class Prayer extends StatelessWidget {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),
           ),
-          color: Color(0xFF0001cf),
+          color: Constants.primaryColor,
           child: ListTile(
             leading: Icon(
               Icons.person,
@@ -61,12 +89,8 @@ class Prayer extends StatelessWidget {
               size: 30,
             ),
             title: Text(
-              Composer,
-              style: TextStyle(
-                fontSize: screenWidth * 0.05,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-              ),
+              composer,
+              style: Constants.titleStyle,
             ),
           ),
         ),
@@ -83,14 +107,7 @@ class Prayer extends StatelessWidget {
                     children: prayerDescription.split('#').map((line) {
                       return TextSpan(
                         text: line,
-                        style: TextStyle(
-                          fontSize: screenWidth * 0.048,
-                          fontFamily: 'Lora',
-                          fontWeight: FontWeight.w900,
-                          letterSpacing: 1.5,
-                          color: Color(0xFF0001cf),
-                          height: 1.5,
-                        ),
+                        style: Constants.descriptionStyle,
                       );
                     }).toList(),
                   ),
@@ -112,7 +129,7 @@ class Prayer extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10),
       ),
-      color: Color(0xFF0001cf),
+      color: Constants.primaryColor,
       child: ListTile(
         leading: Icon(
           Icons.access_time_rounded,
@@ -121,11 +138,7 @@ class Prayer extends StatelessWidget {
         ),
         title: Text(
           '90 SECONDS',
-          style: TextStyle(
-            fontSize: screenWidth * 0.05,
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
-          ),
+          style: Constants.titleStyle,
         ),
       ),
     );
