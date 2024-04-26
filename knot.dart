@@ -1,6 +1,41 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:video_player/video_player.dart';
 import 'package:chewie/chewie.dart';
+
+void main() {
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]).then((_) {
+    runApp(MaterialApp(
+      home: Knots(),
+    ));
+  });
+}
+
+// Constants for text styles
+const TextStyle appBarTextStyle = TextStyle(
+  fontWeight: FontWeight.bold,
+  fontSize: 20,
+  fontFamily: 'Sarabun',
+  letterSpacing: 1.5,
+);
+
+const TextStyle knotTitleStyle = TextStyle(
+  fontSize: 20,
+  fontWeight: FontWeight.bold,
+  color: Colors.white,
+);
+
+const TextStyle knotDescriptionStyle = TextStyle(
+  fontSize: 18.0,
+  fontFamily: 'Lora',
+  fontWeight: FontWeight.w900,
+  letterSpacing: 1.5,
+  color: Color(0xFF0001cf),
+  height: 1.5,
+);
 
 class Knots extends StatelessWidget {
   @override
@@ -9,12 +44,7 @@ class Knots extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           'KNOTS',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 20,
-            fontFamily: 'Sarabun',
-            letterSpacing: 1.5,
-          ),
+          style: appBarTextStyle,
         ),
         centerTitle: true,
         backgroundColor: Color(0xFF0001cf),
@@ -76,7 +106,7 @@ class Knots extends StatelessWidget {
             knotName: "BOWLINE ON A BIGHT",
             knotVideo: "assets/videos/bowlineonabight.mp4",
             knotDescription: Knot8Description,
-          )// Add more KnotItem widgets for each knot
+          )// Add more KnotItem widgets for each knot// Add more KnotItem widgets for each knot
         ],
       ),
     );
@@ -117,11 +147,7 @@ class KnotItem extends StatelessWidget {
             ),
             title: Text(
               knotName,
-              style: TextStyle(
-                fontSize: screenWidth * 0.05,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-              ),
+              style: knotTitleStyle,
             ),
           ),
         ),
@@ -153,14 +179,7 @@ class KnotItem extends StatelessWidget {
                     children: knotDescription.split('#').map((line) {
                       return TextSpan(
                         text: line,
-                        style: TextStyle(
-                          fontSize: screenWidth * 0.048,
-                          fontFamily: 'Lora',
-                          fontWeight: FontWeight.w900,
-                          letterSpacing: 1.5,
-                          color: Color(0xFF0001cf),
-                          height: 1.5,
-                        ),
+                        style: knotDescriptionStyle,
                       );
                     }).toList(),
                   ),
@@ -309,8 +328,3 @@ final String Knot8Description = '''
 # • Climbing, rescue operations, or creating secure attachment points in rigging.
 ''';
 
-void main() {
-  runApp(MaterialApp(
-    home: Knots(),
-  ));
-}
