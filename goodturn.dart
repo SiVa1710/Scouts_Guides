@@ -1,8 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
+class Constants {
+  // Text styles
+  static const TextStyle titleStyle = TextStyle(
+    fontSize: 20,
+    fontWeight: FontWeight.bold,
+    color: Colors.white,
+  );
+
+  // Colors
+  static const Color primaryColor = Color(0xFF0001cf);
+}
 
 class GoodTurn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    // Ensure portrait mode only
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
+
     final double screenWidth = MediaQuery.of(context).size.width;
     final double screenHeight = MediaQuery.of(context).size.height;
 
@@ -18,7 +37,7 @@ class GoodTurn extends StatelessWidget {
           ),
         ),
         centerTitle: true,
-        backgroundColor: Color(0xFF0001cf),
+        backgroundColor: Constants.primaryColor,
       ),
       body: ListView(
         padding: EdgeInsets.all(screenWidth * 0.03),
@@ -37,7 +56,7 @@ class GoodTurn extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10),
       ),
-      color: Color(0xFF0001cf),
+      color: Constants.primaryColor,
       child: ListTile(
         leading: Icon(
           Icons.format_align_left,
@@ -46,11 +65,7 @@ class GoodTurn extends StatelessWidget {
         ),
         title: Text(
           'FORMAT',
-          style: TextStyle(
-            fontSize: screenWidth * 0.05,
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
-          ),
+          style: Constants.titleStyle,
         ),
       ),
     );
@@ -70,6 +85,7 @@ class GoodTurn extends StatelessWidget {
     );
   }
 }
+
 void main() {
   runApp(MaterialApp(
     home: GoodTurn(),
