@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class History extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    // Ensure portrait mode only
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
+
     final double screenWidth = MediaQuery.of(context).size.width;
     final double screenHeight = MediaQuery.of(context).size.height;
 
@@ -65,14 +72,14 @@ class History extends StatelessWidget {
             title: Text(
               HistoryName,
               style: TextStyle(
-                fontSize: screenWidth * 0.05,
+                fontSize: 20, // Adjusted font size
                 fontWeight: FontWeight.bold,
                 color: Colors.white,
               ),
             ),
           ),
         ),
-        SizedBox(height: screenHeight * 0.02),
+        SizedBox(height: 16.0),
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
@@ -86,7 +93,7 @@ class History extends StatelessWidget {
                       return TextSpan(
                         text: line,
                         style: TextStyle(
-                          fontSize: screenWidth * 0.048,
+                          fontSize: 18.0, // Adjusted font size
                           fontFamily: 'Lora',
                           fontWeight: FontWeight.w900,
                           letterSpacing: 1.5,
@@ -129,14 +136,14 @@ class History extends StatelessWidget {
             title: Text(
               History1Name,
               style: TextStyle(
-                fontSize: screenWidth * 0.05,
+                fontSize: 20, // Adjusted font size
                 fontWeight: FontWeight.bold,
                 color: Colors.white,
               ),
             ),
           ),
         ),
-        SizedBox(height: screenHeight * 0.02),
+        SizedBox(height: 16.0),
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
@@ -150,7 +157,7 @@ class History extends StatelessWidget {
                       return TextSpan(
                         text: line,
                         style: TextStyle(
-                          fontSize: screenWidth * 0.048,
+                          fontSize: 18.0, // Adjusted font size
                           fontFamily: 'Lora',
                           fontWeight: FontWeight.w900,
                           letterSpacing: 1.5,
