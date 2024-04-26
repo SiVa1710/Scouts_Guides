@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class FirstAidKit extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final double screenWidth = MediaQuery
-        .of(context)
-        .size
-        .width;
-    final double screenHeight = MediaQuery
-        .of(context)
-        .size
-        .height;
+    // Ensure portrait mode only
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
+
+    final double screenWidth = MediaQuery.of(context).size.width;
+    final double screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
       appBar: AppBar(
@@ -64,7 +65,7 @@ class FirstAidKit extends StatelessWidget {
             title: Text(
               name,
               style: TextStyle(
-                fontSize: screenWidth * 0.05,
+                fontSize: 20, // Maintain font size consistency
                 fontWeight: FontWeight.bold,
                 color: Colors.white,
               ),
@@ -85,7 +86,7 @@ class FirstAidKit extends StatelessWidget {
                       return TextSpan(
                         text: line,
                         style: TextStyle(
-                          fontSize: screenWidth * 0.048,
+                          fontSize: 18, // Maintain font size consistency
                           fontFamily: 'Lora',
                           fontWeight: FontWeight.w900,
                           letterSpacing: 1.5,
@@ -105,9 +106,8 @@ class FirstAidKit extends StatelessWidget {
   }
 }
 
-
 final String FirstaidKit = '''
-#Ensure your first aid kit is stocked with essential items to effectively treat injuries. Start by preparing a list of contents and verify it with a medical professional. Then, visit a local drug store to purchase the necessary supplies according to the list below:
+# Ensure your first aid kit is stocked with essential items to effectively treat injuries. Start by preparing a list of contents and verify it with a medical professional. Then, visit a local drug store to purchase the necessary supplies according to the list below:
 #
 #• Bar of soap
 #• 2-inch roller bandage
