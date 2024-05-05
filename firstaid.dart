@@ -33,6 +33,7 @@ class FirstAid extends StatelessWidget {
         title: Text(
           'FIRST AID',
           style: TextStyle(
+            color: Colors.white,
             fontWeight: FontWeight.bold, // Make the title bold
             fontSize: 20,
             fontFamily: 'Sarabun',
@@ -41,6 +42,7 @@ class FirstAid extends StatelessWidget {
         ),
         centerTitle: true,
         backgroundColor: Color(0xFF0001cf),
+        iconTheme: IconThemeData(color: Colors.white, size: 25),
       ),
       body: Padding(
         padding: const EdgeInsets.all(17.0), // Add padding around the grid
@@ -115,7 +117,7 @@ class ItemCard extends StatelessWidget {
   final String image;
   final VoidCallback onTap;
 
-  ItemCard({this.name, this.image, this.onTap});
+  ItemCard({required this.name, required this.image, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
