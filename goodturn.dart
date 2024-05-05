@@ -30,6 +30,7 @@ class GoodTurn extends StatelessWidget {
         title: Text(
           'GOOD TURN',
           style: TextStyle(
+            color: Colors.white,
             fontWeight: FontWeight.bold,
             fontSize: 20,
             fontFamily: 'Sarabun',
@@ -38,6 +39,7 @@ class GoodTurn extends StatelessWidget {
         ),
         centerTitle: true,
         backgroundColor: Constants.primaryColor,
+        iconTheme: IconThemeData(color: Colors.white, size: 25),
       ),
       body: ListView(
         padding: EdgeInsets.all(screenWidth * 0.03),
@@ -50,7 +52,7 @@ class GoodTurn extends StatelessWidget {
     );
   }
 
-  Widget buildFormatCard({double screenWidth}) {
+  Widget buildFormatCard({required double screenWidth}) {
     return Card(
       elevation: 2,
       shape: RoundedRectangleBorder(
@@ -71,7 +73,7 @@ class GoodTurn extends StatelessWidget {
     );
   }
 
-  Widget buildRoundedImage({double screenWidth}) {
+  Widget buildRoundedImage({required double screenWidth}) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: ClipRRect(
