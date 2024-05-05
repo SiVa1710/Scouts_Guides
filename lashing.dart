@@ -16,6 +16,7 @@ void main() {
 
 // Constants for text styles
 const TextStyle appBarTextStyle = TextStyle(
+  color: Colors.white,
   fontWeight: FontWeight.bold,
   fontSize: 20,
   fontFamily: 'Sarabun',
@@ -48,6 +49,7 @@ class Lashing extends StatelessWidget {
         ),
         centerTitle: true,
         backgroundColor: Color(0xFF0001cf),
+        iconTheme: IconThemeData(color: Colors.white, size: 25),
       ),
       body: ListView(
         padding: EdgeInsets.all(16.0),
@@ -99,10 +101,10 @@ class LashItem extends StatelessWidget {
   final String lashDescription;
 
   LashItem({
-    this.lashImage,
-    this.lashName,
-    this.lashVideo,
-    this.lashDescription,
+    required this.lashImage,
+    required this.lashName,
+    required this.lashVideo,
+    required this.lashDescription,
   });
 
   @override
@@ -140,7 +142,7 @@ class LashItem extends StatelessWidget {
             children: [
               AspectRatio(
                 aspectRatio: 16 / 9,
-                child: VideoPlayerWidget(videoPath: lashVideo),
+                child: VideoPlayerWidget(key: UniqueKey(), videoPath: lashVideo),
               ),
             ],
           ),
@@ -175,15 +177,15 @@ class LashItem extends StatelessWidget {
 class VideoPlayerWidget extends StatefulWidget {
   final String videoPath;
 
-  const VideoPlayerWidget({Key key, this.videoPath}) : super(key: key);
+  const VideoPlayerWidget({required Key key, required this.videoPath}) : super(key: key);
 
   @override
   _VideoPlayerWidgetState createState() => _VideoPlayerWidgetState();
 }
 
 class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
-  VideoPlayerController _videoPlayerController;
-  ChewieController _chewieController;
+  late VideoPlayerController _videoPlayerController;
+  late ChewieController _chewieController;
 
   @override
   void initState() {
@@ -200,6 +202,15 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
       aspectRatio: 16 / 9,
       // other options...
     );
+    _videoPlayerController.addListener(_onVideoStateChanged);
+  }
+
+  void _onVideoStateChanged() {
+    if (_videoPlayerController.value.position >= _videoPlayerController.value.duration) {
+      // Video playback reached the end
+      // Seek back to the start
+      _videoPlayerController.seekTo(Duration.zero);
+    }
   }
 
   @override
@@ -221,6 +232,7 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
 
   @override
   void dispose() {
+    _videoPlayerController.removeListener(_onVideoStateChanged);
     _videoPlayerController.dispose();
     _chewieController.dispose();
     super.dispose();
@@ -276,5 +288,3 @@ final String Lash5Description = '''
 #
 # • Building structures like scaffolding, tripods, or framework in outdoor settings.
 ''';
-
-
