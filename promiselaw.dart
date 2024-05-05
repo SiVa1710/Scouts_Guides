@@ -19,6 +19,7 @@ class PromiseAndLaw extends StatelessWidget {
 
     // Constants for text styles
     const TextStyle pageTitleStyle = TextStyle(
+      color: Colors.white,
       fontWeight: FontWeight.bold,
       fontSize: 20,
       fontFamily: 'Sarabun',
@@ -48,6 +49,7 @@ class PromiseAndLaw extends StatelessWidget {
         ),
         centerTitle: true,
         backgroundColor: Color(0xFF0001cf),
+        iconTheme: IconThemeData(color: Colors.white, size: 25),
       ),
       body: ListView(
         padding: EdgeInsets.all(screenWidth * 0.03),
@@ -73,11 +75,11 @@ class PromiseAndLaw extends StatelessWidget {
   }
 
   Widget buildItem({
-    String itemName,
-    String itemDescription,
-    double screenWidth,
-    double screenHeight,
-    String iconPath,
+    required String itemName,
+    required String itemDescription,
+    required double screenWidth,
+    required double screenHeight,
+    required String iconPath,
   }) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
