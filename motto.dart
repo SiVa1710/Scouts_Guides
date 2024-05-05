@@ -22,6 +22,7 @@ class Motto extends StatelessWidget {
         title: Text(
           'MOTTO',
           style: TextStyle(
+            color: Colors.white,
             fontWeight: FontWeight.bold,
             fontSize: 20,
             fontFamily: 'Sarabun',
@@ -30,6 +31,7 @@ class Motto extends StatelessWidget {
         ),
         centerTitle: true,
         backgroundColor: Color(0xFF0001cf),
+        iconTheme: IconThemeData(color: Colors.white, size: 25),
       ),
       body: ListView(
         padding: EdgeInsets.all(screenWidth * 0.03),
@@ -47,11 +49,11 @@ class Motto extends StatelessWidget {
   }
 
   Widget buildMottoItem({
-    String mottoName,
-    String mottoDescription,
-    double screenWidth,
-    double screenHeight,
-    String imagePath, // New parameter for image asset path
+    required String mottoName,
+    required String mottoDescription,
+    required double screenWidth,
+    required double screenHeight,
+    required String imagePath, // New parameter for image asset path
   }) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
