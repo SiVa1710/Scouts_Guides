@@ -23,6 +23,7 @@ class FirstAid4 extends StatelessWidget {
         title: Text(
           'FIRST AID',
           style: TextStyle(
+            color: Colors.white,
             fontWeight: FontWeight.bold,
             fontSize: 20,
             fontFamily: 'Sarabun',
@@ -31,6 +32,7 @@ class FirstAid4 extends StatelessWidget {
         ),
         centerTitle: true,
         backgroundColor: Color(0xFF0001cf),
+        iconTheme: IconThemeData(color: Colors.white, size: 25),
       ),
       body: ListView(
         padding: EdgeInsets.all(screenWidth * 0.03),
@@ -130,10 +132,10 @@ class FirstAid4 extends StatelessWidget {
   }
 
   Widget buildFirstAidCard({
-    String name,
-    String description,
-    double screenWidth,
-    double screenHeight,
+    required String name,
+    required String description,
+    required double screenWidth,
+    required double screenHeight,
   }) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
