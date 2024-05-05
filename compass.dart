@@ -18,6 +18,7 @@ class Compass extends StatelessWidget {
         title: Text(
           'COMPASS',
           style: TextStyle(
+            color: Colors.white,
             fontWeight: FontWeight.bold,
             fontSize: 20,
             fontFamily: 'Sarabun',
@@ -26,6 +27,7 @@ class Compass extends StatelessWidget {
         ),
         centerTitle: true,
         backgroundColor: Color(0xFF0001cf),
+        iconTheme: IconThemeData(color: Colors.white, size: 25),
       ),
       body: ListView(
         padding: EdgeInsets.all(screenWidth * 0.03),
@@ -58,10 +60,10 @@ class Compass extends StatelessWidget {
   }
 
   Widget buildCompassItem({
-    String compassName,
-    String compassDescription,
-    double screenWidth,
-    double screenHeight,
+    required String compassName,
+    required String compassDescription,
+    required double screenWidth,
+    required double screenHeight,
   }) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -184,10 +186,10 @@ class Compass extends StatelessWidget {
   }
 
   Widget buildAdditionalContent({
-    String compassName,
-    String compassDescription,
-    double screenWidth,
-    double screenHeight,
+    required String compassName,
+    required String compassDescription,
+    required double screenWidth,
+    required double screenHeight,
   }) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -225,10 +227,10 @@ class Compass extends StatelessWidget {
   }
 
   Widget buildConstellationItem({
-    String compassName,
-    String compassDescription,
-    double screenWidth,
-    double screenHeight,
+    required String compassName,
+    required String compassDescription,
+    required double screenWidth,
+    required double screenHeight,
   }) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
