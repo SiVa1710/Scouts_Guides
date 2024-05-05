@@ -18,6 +18,7 @@ class History extends StatelessWidget {
         title: Text(
           'HISTORY',
           style: TextStyle(
+            color: Colors.white,
             fontWeight: FontWeight.bold,
             fontSize: 20,
             fontFamily: 'Sarabun',
@@ -26,6 +27,7 @@ class History extends StatelessWidget {
         ),
         centerTitle: true,
         backgroundColor: Color(0xFF0001cf),
+        iconTheme: IconThemeData(color: Colors.white, size: 25),
       ),
       body: ListView(
         padding: EdgeInsets.all(screenWidth * 0.03),
@@ -49,10 +51,10 @@ class History extends StatelessWidget {
   }
 
   Widget buildHistoryItem({
-    String HistoryName,
-    String HistoryDescription,
-    double screenWidth,
-    double screenHeight,
+    required String HistoryName,
+    required String HistoryDescription,
+    required double screenWidth,
+    required double screenHeight,
   }) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -113,10 +115,10 @@ class History extends StatelessWidget {
   }
 
   Widget buildHistory1Item({
-    String History1Name,
-    String History1Description,
-    double screenWidth,
-    double screenHeight,
+    required String History1Name,
+    required String History1Description,
+    required double screenWidth,
+    required double screenHeight,
   }) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
