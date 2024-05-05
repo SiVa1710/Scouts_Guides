@@ -18,6 +18,7 @@ class Signals extends StatelessWidget {
         title: Text(
           'SIGNALS',
           style: TextStyle(
+            color: Colors.white,
             fontWeight: FontWeight.bold,
             fontSize: 20, // Match the font size of the title in Flags page
             fontFamily: 'Sarabun',
@@ -26,6 +27,7 @@ class Signals extends StatelessWidget {
         ),
         centerTitle: true,
         backgroundColor: Color(0xFF0001cf),
+        iconTheme: IconThemeData(color: Colors.white, size: 25),
       ),
       body: ListView(
         padding: EdgeInsets.all(screenWidth * 0.03),
@@ -49,10 +51,10 @@ class Signals extends StatelessWidget {
   }
 
   Widget buildSignalItem({
-    String signalName,
-    String signalDescription,
-    double screenWidth,
-    double screenHeight,
+    required String signalName,
+    required String signalDescription,
+    required double screenWidth,
+    required double screenHeight,
   }) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
