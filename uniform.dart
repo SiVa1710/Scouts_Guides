@@ -15,6 +15,7 @@ class Uniform extends StatelessWidget {
         title: Text(
           'UNIFORM',
           style: TextStyle(
+            color: Colors.white,
             fontWeight: FontWeight.bold,
             fontSize: 20,
             fontFamily: 'Sarabun',
@@ -23,6 +24,7 @@ class Uniform extends StatelessWidget {
         ),
         centerTitle: true,
         backgroundColor: Color(0xFF0001cf),
+        iconTheme: IconThemeData(color: Colors.white, size: 25),
       ),
       body: ListView(
         padding: EdgeInsets.all(16.0),
@@ -50,9 +52,9 @@ class UniformItem extends StatelessWidget {
   final String uniformDescription;
 
   UniformItem({
-    this.uniformImage,
-    this.uniformName,
-    this.uniformDescription,
+    required this.uniformImage,
+    required this.uniformName,
+    required this.uniformDescription,
   });
 
   @override
