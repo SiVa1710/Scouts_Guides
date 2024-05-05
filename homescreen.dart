@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:scouts_and_guides/exercise.dart';
+import 'package:scouts_and_guides/exercises.dart';
 import 'package:scouts_and_guides/flags.dart';
 import 'package:scouts_and_guides/goodturn.dart';
 import 'package:scouts_and_guides/history.dart';
@@ -54,6 +54,7 @@ class HomeScreen extends StatelessWidget {
         title: Text(
           'SCOUTS AND GUIDES',
           style: TextStyle(
+            color: Colors.white,
             fontWeight: FontWeight.bold,
             fontSize: 20,
             fontFamily: 'Sarabun',
@@ -66,6 +67,7 @@ class HomeScreen extends StatelessWidget {
           builder: (BuildContext context) {
             return IconButton(
               icon: Icon(Icons.menu),
+              color: Colors.white,
               onPressed: () {
                 Scaffold.of(context).openDrawer();
               },
@@ -237,7 +239,7 @@ class CategoryItem extends StatelessWidget {
   final String image;
   final VoidCallback onTap;
 
-  CategoryItem({this.name, this.image, this.onTap});
+  CategoryItem({required this.name, required this.image, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -284,9 +286,9 @@ class CategoryItem extends StatelessWidget {
 }
 
 ListTile buildListTile({
-  String image,
-  String title,
-  VoidCallback onTap,
+  required String image,
+  required String title,
+  required VoidCallback onTap,
 }) {
   return ListTile(
     contentPadding: EdgeInsets.zero,
@@ -295,7 +297,6 @@ ListTile buildListTile({
         border: Border(
           bottom: BorderSide(color: Colors.grey.shade400, width: 1.0),
         ),
-        color: Colors.white,
       ),
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 8.0),
