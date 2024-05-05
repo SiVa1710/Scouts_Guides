@@ -41,6 +41,7 @@ class Flags extends StatelessWidget {
         title: Text(
           'FLAGS',
           style: TextStyle(
+            color: Colors.white,
             fontWeight: FontWeight.bold,
             fontSize: 20,
             fontFamily: 'Sarabun',
@@ -49,6 +50,7 @@ class Flags extends StatelessWidget {
         ),
         centerTitle: true,
         backgroundColor: primaryColor,
+        iconTheme: IconThemeData(color: Colors.white, size: 25),
       ),
       body: ListView(
         padding: EdgeInsets.all(16.0),
@@ -88,9 +90,9 @@ class FlagItem extends StatelessWidget {
   final String flagDescription;
 
   FlagItem({
-    this.flagImage,
-    this.flagName,
-    this.flagDescription,
+    required this.flagImage,
+    required this.flagName,
+    required this.flagDescription,
   });
 
   @override
