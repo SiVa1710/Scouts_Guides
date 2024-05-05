@@ -39,6 +39,7 @@ class NationalAnthem extends StatelessWidget {
         title: Text(
           'NATIONAL ANTHEM',
           style: TextStyle(
+            color: Colors.white,
             fontWeight: FontWeight.bold,
             fontSize: 20,
             fontFamily: 'Sarabun',
@@ -47,6 +48,7 @@ class NationalAnthem extends StatelessWidget {
         ),
         centerTitle: true,
         backgroundColor: Constants.primaryColor,
+        iconTheme: IconThemeData(color: Colors.white, size: 25),
       ),
       body: ListView(
         padding: EdgeInsets.all(screenWidth * 0.03),
@@ -57,7 +59,7 @@ class NationalAnthem extends StatelessWidget {
             screenWidth: screenWidth,
             screenHeight: screenHeight,
           ),
-          SizedBox(height: screenHeight * 0.02),
+          SizedBox(height: screenHeight * 0.01),
           buildTimeCard(
             screenWidth: screenWidth,
             screenHeight: screenHeight,
@@ -68,10 +70,10 @@ class NationalAnthem extends StatelessWidget {
   }
 
   Widget buildPrayerItem({
-    String composer,
-    String prayerDescription,
-    double screenWidth,
-    double screenHeight,
+    required String composer,
+    required String prayerDescription,
+    required double screenWidth,
+    required double screenHeight,
   }) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -121,8 +123,8 @@ class NationalAnthem extends StatelessWidget {
   }
 
   Widget buildTimeCard({
-    double screenWidth,
-    double screenHeight,
+    required double screenWidth,
+    required double screenHeight,
   }) {
     return Card(
       elevation: 2,
