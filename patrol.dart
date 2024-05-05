@@ -40,6 +40,7 @@ class Patrol extends StatelessWidget {
         title: Text(
           'PATROL SYSTEM',
           style: TextStyle(
+            color: Colors.white,
             fontWeight: FontWeight.bold,
             fontSize: 20,
             fontFamily: 'Sarabun',
@@ -48,6 +49,7 @@ class Patrol extends StatelessWidget {
         ),
         centerTitle: true,
         backgroundColor: Color(0xFF0001cf),
+        iconTheme: IconThemeData(color: Colors.white, size: 25),
       ),
       body: ListView(
         padding: EdgeInsets.all(screenWidth * 0.03),
@@ -241,16 +243,16 @@ class Patrol extends StatelessWidget {
   }
 
   Widget buildFirstAidCard({
-    String name,
-    String description,
-    double screenWidth,
-    double screenHeight,
+    required String name,
+    required String description,
+    required double screenWidth,
+    required double screenHeight,
   }) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Card(
-          elevation: 1,
+          elevation: 2,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),
           ),
