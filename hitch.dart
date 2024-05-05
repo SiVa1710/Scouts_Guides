@@ -16,6 +16,7 @@ void main() {
 
 // Constants for text styles
 const TextStyle appBarTextStyle = TextStyle(
+  color: Colors.white,
   fontWeight: FontWeight.bold,
   fontSize: 20,
   fontFamily: 'Sarabun',
@@ -48,6 +49,7 @@ class Hitches extends StatelessWidget {
         ),
         centerTitle: true,
         backgroundColor: Color(0xFF0001cf),
+        iconTheme: IconThemeData(color: Colors.white, size: 25),
       ),
       body: ListView(
         padding: EdgeInsets.all(16.0),
@@ -106,10 +108,10 @@ class HitchItem extends StatelessWidget {
   final String hitchDescription;
 
   HitchItem({
-    this.hitchImage,
-    this.hitchName,
-    this.hitchVideo,
-    this.hitchDescription,
+    required this.hitchImage,
+    required this.hitchName,
+    required this.hitchVideo,
+    required this.hitchDescription,
   });
 
   @override
@@ -147,7 +149,7 @@ class HitchItem extends StatelessWidget {
             children: [
               AspectRatio(
                 aspectRatio: 16 / 9,
-                child: VideoPlayerWidget(videoPath: hitchVideo),
+                child: VideoPlayerWidget(key: UniqueKey(), videoPath: hitchVideo),
               ),
             ],
           ),
@@ -182,15 +184,15 @@ class HitchItem extends StatelessWidget {
 class VideoPlayerWidget extends StatefulWidget {
   final String videoPath;
 
-  const VideoPlayerWidget({Key key, this.videoPath}) : super(key: key);
+  const VideoPlayerWidget({required Key key, required this.videoPath}) : super(key: key);
 
   @override
   _VideoPlayerWidgetState createState() => _VideoPlayerWidgetState();
 }
 
 class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
-  VideoPlayerController _videoPlayerController;
-  ChewieController _chewieController;
+  late VideoPlayerController _videoPlayerController;
+  late ChewieController _chewieController;
 
   @override
   void initState() {
@@ -206,6 +208,15 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
       allowFullScreen: false,
       aspectRatio: 16 / 9,
     );
+    _videoPlayerController.addListener(_onVideoStateChanged);
+  }
+
+  void _onVideoStateChanged() {
+    if (_videoPlayerController.value.position >= _videoPlayerController.value.duration) {
+      // Video playback reached the end
+      // Seek back to the start
+      _videoPlayerController.seekTo(Duration.zero);
+    }
   }
 
   @override
@@ -227,6 +238,7 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
 
   @override
   void dispose() {
+    _videoPlayerController.removeListener(_onVideoStateChanged);
     _videoPlayerController.dispose();
     _chewieController.dispose();
     super.dispose();
