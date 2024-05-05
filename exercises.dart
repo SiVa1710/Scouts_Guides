@@ -38,6 +38,7 @@ class Exercises extends StatelessWidget {
         title: Text(
           'EXERCISES',
           style: TextStyle(
+            color: Colors.white,
             fontWeight: FontWeight.bold,
             fontSize: 20,
             fontFamily: 'Sarabun',
@@ -46,6 +47,7 @@ class Exercises extends StatelessWidget {
         ),
         centerTitle: true,
         backgroundColor: Color(0xFF0001cf),
+        iconTheme: IconThemeData(color: Colors.white, size: 25),
       ),
       body: ListView(
         padding: EdgeInsets.all(screenWidth * 0.03),
@@ -103,17 +105,17 @@ class Exercises extends StatelessWidget {
   }
 
   Widget buildExerciseCard({
-    String exerciseImage,
-    String exerciseName,
-    String exerciseDescription,
-    double screenWidth,
-    double screenHeight,
+    required String exerciseImage,
+    required String exerciseName,
+    required String exerciseDescription,
+    required double screenWidth,
+    required double screenHeight,
   }) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Card(
-          elevation: 4,
+          elevation: 2,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),
           ),
