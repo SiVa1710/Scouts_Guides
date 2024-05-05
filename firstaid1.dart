@@ -18,6 +18,7 @@ class FirstAidKit extends StatelessWidget {
         title: Text(
           'FIRST AID',
           style: TextStyle(
+            color: Colors.white,
             fontWeight: FontWeight.bold,
             fontSize: 20,
             fontFamily: 'Sarabun',
@@ -26,12 +27,13 @@ class FirstAidKit extends StatelessWidget {
         ),
         centerTitle: true,
         backgroundColor: Color(0xFF0001cf),
+        iconTheme: IconThemeData(color: Colors.white, size: 25),
       ),
       body: ListView(
         padding: EdgeInsets.all(screenWidth * 0.03),
         children: [
           buildFirstAidKitItem(
-            name: 'FIRST AID KIT CONTENT LISTS',
+            name: 'FIRST AID KIT LISTS',
             prayerDescription: FirstaidKit,
             screenWidth: screenWidth,
             screenHeight: screenHeight,
@@ -42,10 +44,10 @@ class FirstAidKit extends StatelessWidget {
   }
 
   Widget buildFirstAidKitItem({
-    String name,
-    String prayerDescription,
-    double screenWidth,
-    double screenHeight,
+    required String name,
+    required String prayerDescription,
+    required double screenWidth,
+    required double screenHeight,
   }) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
