@@ -64,12 +64,15 @@ This app is the perfect pocket resource for everyone in the Scouting and Guiding
 
 ## 📸 Sneak Peek
 
-*(Tip for the dev: Upload a few of your Play Store screenshots into your GitHub repository and link them below to show off your UI!)*
-
 <div align="center">
-  <!-- Replace the src with your image file names! -->
-  <!-- <img src="screenshot1.png" width="250" /> -->
-  <!-- <img src="screenshot2.png" width="250" /> -->
+  <img src="screenshots/4.png" width="250" style="margin: 10px;" alt="Home Screen" />
+  <img src="screenshots/8.png" width="250" style="margin: 10px;" alt="Notes" />
+  <img src="screenshots/1.png" width="250" style="margin: 10px;" alt="Lashing" />
+  <img src="screenshots/2.png" width="250" style="margin: 10px;" alt="Hitches" />
+  <img src="screenshots/3.png" width="250" style="margin: 10px;" alt="History" />  
+  <img src="screenshots/5.png" width="250" style="margin: 10px;" alt="Flags" />
+  <img src="screenshots/6.png" width="250" style="margin: 10px;" alt="Song" />
+  <img src="screenshots/7.png" width="250" style="margin: 10px;" alt="Exercise" />  
 </div>
 
 ---
